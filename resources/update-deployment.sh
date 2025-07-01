@@ -8,6 +8,8 @@ source $SCRIPTDIR/common.sh
 function patch-gitops() {
     echo "Running  patch-gitops"
 
+    ENVIRONMENT=${ENVIRONMENT-development}
+
     if [ "$DISABLE_GITOPS_UPDATE" == "true" ]; then
         echo "DISABLE_GITOPS_UPDATE is set. No repo update will occur"
         exit_with_success_result
