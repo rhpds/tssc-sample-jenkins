@@ -49,7 +49,7 @@ function patch-gitops() {
     cd ${gitops_repo_name}
 
     component_name=$(yq .metadata.name application.yaml)
-    deployment_patch_filepath="components/${component_name}/overlays/development/deployment-patch.yaml"
+    deployment_patch_filepath="components/${component_name}/overlays/${ENVIRONMENT}/deployment-patch.yaml"
     IMAGE_PATH='.spec.template.spec.containers[0].image'
     old_image=$(yq "${IMAGE_PATH}" "${deployment_patch_filepath}")
     yq e -i "${IMAGE_PATH} |= \"${PARAM_IMAGE}\"" "${deployment_patch_filepath}"
