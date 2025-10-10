@@ -13,6 +13,9 @@ function login() {
 function build() {
     echo "Running $TASK_NAME:build"
 
+    # Cleanup directory in event of retry
+    rm -rf $TEMP_DIR/files/*
+
     # Check if the Dockerfile exists
     SOURCE_CODE_DIR=.
     if [ -e "$SOURCE_CODE_DIR/$CONTEXT/$DOCKERFILE" ]; then
